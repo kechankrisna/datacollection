@@ -1,4 +1,4 @@
-library example;
+library datacollection;
 
 /// A Calculator.
 class Calculator {

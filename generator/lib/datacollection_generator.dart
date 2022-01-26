@@ -1,4 +1,4 @@
-library generator;
+library datacollection_generator;
 
 /// A Calculator.
 class Calculator {

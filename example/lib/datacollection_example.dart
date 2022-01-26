@@ -1,4 +1,4 @@
-library annotation;
+library datacollection_example;
 
 /// A Calculator.
 class Calculator {
