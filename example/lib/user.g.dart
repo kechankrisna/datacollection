@@ -3,6 +3,23 @@
 part of 'user.dart';
 
 // **************************************************************************
+// CollectionResponseGenerator
+// **************************************************************************
+
+extension GeneratedUserCollectionResponseExension on CollectionResponse<User> {
+  List<User> get value =>
+      <User>[...data.map((e) => _$UserFromJson(e)).toList()];
+}
+
+// **************************************************************************
+// DataResponseGenerator
+// **************************************************************************
+
+extension GeneratedUserDataResponseExension on DataResponse<User> {
+  User? get value => data == null ? null : _$UserFromJson(data!);
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

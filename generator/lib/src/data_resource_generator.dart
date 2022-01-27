@@ -24,7 +24,7 @@ class DataResponseGenerator
     /// EX : User get value => _$UserFromJson(data);
 
     classBuffer.writeln(
-        '${className} get value => _\$${className}FromJson(data) ;');
+        '${className}? get value => data == null ? null : _\$${className}FromJson(data!);');
 
     classBuffer.writeln('}');
 

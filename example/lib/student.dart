@@ -5,6 +5,8 @@ part 'student.g.dart';
 
 @JsonSerializable()
 @paginations
+@collections
+@response
 class Student {
   final String? name;
   final num? grade;

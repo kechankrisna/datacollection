@@ -6,6 +6,8 @@ part 'user.g.dart';
 
 @JsonSerializable()
 @paginations
+@collections
+@response
 class User {
   final String? name;
   final int? age;

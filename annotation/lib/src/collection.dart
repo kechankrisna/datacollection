@@ -1,5 +1,7 @@
 import 'package:meta/meta.dart';
 export 'models/pagination_response.dart';
+export 'models/collection_response.dart';
+export 'models/data_response.dart';
 
 @immutable
 class PaginationResponseAnnotation {
@@ -20,4 +22,4 @@ const paginations = PaginationResponseAnnotation();
 
 const collections = CollectionResponseAnnotation();
 
-const resource = DataResponseAnnotation();
+const response = DataResponseAnnotation();
