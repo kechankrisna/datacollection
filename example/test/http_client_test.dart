@@ -36,6 +36,16 @@ void main() {
           (server) => server.reply(401, {'message': 'Unauthorized'}));
     });
 
+    test("retrofit test with its method", () async {
+      var service = ClientPost(ApplicationService.client);
+      var posts = await service.getPosts();
+      expect(
+        posts.value.runtimeType,
+        List<Post>,
+        reason: "the result should be done fromJson",
+      );
+    });
+
     /// test("test response on home", () async {
     ///   Response response = await dio.get("/");
     ///   print(response.data);
@@ -89,7 +99,7 @@ void main() {
       ///     'status_message': _result.statusMessage ?? null,
       ///     'status_code': _result.statusCode
       ///   });
-      /// var response = DataResponse<Post>.fromJson(json);  
+      /// var response = DataResponse<Post>.fromJson(json);
 
       /// third way
       /// var map = _result.toJson();

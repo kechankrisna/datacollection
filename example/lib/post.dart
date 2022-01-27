@@ -1,15 +1,27 @@
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:datacollection/datacollection.dart';
+import 'package:retrofit/retrofit.dart';
 
 part 'post.g.dart';
+
+@RestApi(baseUrl: 'https://mylekha.app/api/v1/app/')
+abstract class ClientPost {
+  factory ClientPost(Dio dio, {String baseUrl}) = _ClientPost;
+
+  @GET("/posts")
+  Future<PaginationResponse<Post>> getPosts();
+
+  @GET("/posts/{id}")
+  Future<HttpResponse<Post>> getPost(@Path("id") int id);
+}
 
 @JsonSerializable()
 @paginations
 @collections
 @response
 class Post {
-
   @JsonKey(defaultValue: null)
   final int? id;
 
@@ -33,7 +45,6 @@ class Post {
 
   @JsonKey(defaultValue: "en_US")
   final String? locale;
-
 
   Post({
     this.id,
@@ -85,27 +96,27 @@ class Post {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
-  
+
     return other is Post &&
-      other.id == id &&
-      other.slug == slug &&
-      other.title == title &&
-      other.content == content &&
-      other.type == type &&
-      other.link == link &&
-      listEquals(other.images, images) &&
-      other.locale == locale;
+        other.id == id &&
+        other.slug == slug &&
+        other.title == title &&
+        other.content == content &&
+        other.type == type &&
+        other.link == link &&
+        listEquals(other.images, images) &&
+        other.locale == locale;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-      slug.hashCode ^
-      title.hashCode ^
-      content.hashCode ^
-      type.hashCode ^
-      link.hashCode ^
-      images.hashCode ^
-      locale.hashCode;
+        slug.hashCode ^
+        title.hashCode ^
+        content.hashCode ^
+        type.hashCode ^
+        link.hashCode ^
+        images.hashCode ^
+        locale.hashCode;
   }
 }
