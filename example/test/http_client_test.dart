@@ -79,16 +79,21 @@ void main() {
       var _result = await dio.get<Map<String, dynamic>>("/posts/1");
 
       /// fist way
-      /// var response = DataResponse<Post>.fromReponse(_result);
-      
-      /// 
+      var response = DataResponse<Post>.fromReponse(_result);
+
+      ///
       /// second way
-      var json = _result.data!..addAll({
-        'message': _result.data?["message"] as String? ?? null,
-        'status_message': _result.statusMessage ?? null,
-        'status_code': _result.statusCode
-      });
-      var response = DataResponse<Post>.fromJson(json);
+      /// var json = _result.data!
+      ///   ..addAll({
+      ///     'message': _result.data?["message"] as String? ?? null,
+      ///     'status_message': _result.statusMessage ?? null,
+      ///     'status_code': _result.statusCode
+      ///   });
+      /// var response = DataResponse<Post>.fromJson(json);  
+
+      /// third way
+      /// var map = _result.toJson();
+      /// var response = DataResponse<Post>.fromJson(map);
 
       expect(
         response.value != null,

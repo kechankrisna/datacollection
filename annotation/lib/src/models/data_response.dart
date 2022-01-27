@@ -130,7 +130,7 @@ extension DataResponseExtension on DataResponse {
 
 /// cast from Response to DataResponse
 extension ResponseExt<T> on Response<T> {
-  DataResponse<T> get toDataResponse => DataResponse<T>.fromJson({
+  Map<String, dynamic> toJson() => {
         'status_code': this.statusCode,
         'status_message': this.statusMessage,
         'data': this.data,
@@ -140,7 +140,7 @@ extension ResponseExt<T> on Response<T> {
         'errors': (this.data is Map)
             ? (this.data as Map)["errors"]
             : this.data.toString(),
-      });
+      };
 }
 
 extension StatusCodeExt on int? {
