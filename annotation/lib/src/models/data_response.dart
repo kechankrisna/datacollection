@@ -1,0 +1,99 @@
+import 'package:collection/collection.dart';
+
+class DataResponse<T> {
+  int statusCode;
+
+  bool get status => (statusCode == 200);
+
+  String? statusMessage;
+
+  String? message;
+
+  Map<String, dynamic>? errors;
+
+  Map<String, dynamic>? data;
+
+  DataResponse({
+    required this.statusCode,
+    this.statusMessage,
+    this.message,
+    this.errors,
+    this.data,
+  });
+
+  factory DataResponse.fromJson(Map<String, dynamic> json) =>
+      _$DataResponseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DataResponseToJson(this);
+
+  factory DataResponse.fromMap(Map<String, dynamic> map) =>
+      _$DataResponseFromJson(map);
+
+  Map<String, dynamic> toMap() => _$DataResponseToJson(this);
+
+  @override
+  String toString() {
+    return 'DataResponse(statusCode: $statusCode, statusMessage: $statusMessage, message: $message, errors: $errors, data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final mapEquals = const DeepCollectionEquality().equals;
+  
+    return other is DataResponse<T> &&
+      other.statusCode == statusCode &&
+      other.statusMessage == statusMessage &&
+      other.message == message &&
+      mapEquals(other.errors, errors) &&
+      mapEquals(other.data, data);
+  }
+
+  @override
+  int get hashCode {
+    return statusCode.hashCode ^
+      statusMessage.hashCode ^
+      message.hashCode ^
+      errors.hashCode ^
+      data.hashCode;
+  }
+
+  DataResponse<T> copyWith({
+    int? statusCode,
+    String? statusMessage,
+    String? message,
+    Map<String, dynamic>? errors,
+    Map<String, dynamic>? data,
+  }) {
+    return DataResponse<T>(
+      statusCode: statusCode ?? this.statusCode,
+      statusMessage: statusMessage ?? this.statusMessage,
+      message: message ?? this.message,
+      errors: errors ?? this.errors,
+      data: data ?? this.data,
+    );
+  }
+}
+
+DataResponse<T> _$DataResponseFromJson<T>(Map<String, dynamic> json) =>
+    DataResponse<T>(
+      statusCode: json['status_code'] as int? ?? 500,
+      statusMessage: json['status_message'] as String? ?? '',
+      message: json['message'] as String? ?? '',
+      errors: json['errors'] as Map<String, dynamic>? ?? {},
+      data: json['data'] as Map<String, dynamic>? ?? {},
+    );
+
+Map<String, dynamic> _$DataResponseToJson<T>(DataResponse<T> instance) =>
+    <String, dynamic>{
+      'status_code': instance.statusCode,
+      'status_message': instance.statusMessage,
+      'message': instance.message,
+      'errors': instance.errors,
+      'data': instance.data,
+    };
+
+/// default extension will return values as list of map
+extension DataResponseExtension on DataResponse {
+  Map<String, dynamic> get value => Map<String, dynamic>.from(data ?? {});
+}

@@ -4,4 +4,8 @@ analyzer:
   # implicit-dynamic: false
   exclude:
     - lib/**/*.reflectable.dart
+    - lib/*.reflectable.dart
     - lib/**/*.g.dart
+    - lib/*.g.dart
+    - lib/**/*.freezed.dart
+    - lib/*.freezed.dart

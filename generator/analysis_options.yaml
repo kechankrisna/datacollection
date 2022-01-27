@@ -2,6 +2,8 @@ analyzer:
 #   exclude:
 #     - path/to/excluded/files/**
   exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
     - example/**
 # Lint rules and documentation, see http://dart-lang.github.io/linter/lints
 linter:
