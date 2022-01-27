@@ -1,6 +1,7 @@
 import 'package:datacollection/datacollection.dart';
 import 'package:datacollection_example/post.dart';
 import 'package:datacollection_example/services/application_service.dart';
+import 'package:datacollection_example/user.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:test/test.dart';
 import 'post_dump.dart';
@@ -30,6 +31,9 @@ void main() {
       /// unknown route
       dioAdapter.onGet("/posts/100",
           (server) => server.reply(404, {'message': 'the data not found!'}));
+
+      dioAdapter.onGet("/profile",
+          (server) => server.reply(401, {'message': 'Unauthorized'}));
     });
 
     /// test("test response on home", () async {
@@ -115,6 +119,25 @@ void main() {
         response.status,
         false,
         reason: "the status should be return false as not found",
+      );
+
+      expect(response.statusCode, 404);
+    });
+
+    test("Unauthorized test", () async {
+      var result = await dio.get<Map<String, dynamic>>("/profile");
+      var response = DataResponse<User>.fromReponse(result);
+
+      expect(
+        response.status,
+        false,
+        reason: "this should be failed while unauthorized",
+      );
+
+      expect(
+        response.statusCode,
+        401,
+        reason: "this should be 401 while unauthorized",
       );
     });
   });
