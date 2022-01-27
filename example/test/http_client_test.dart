@@ -77,7 +77,18 @@ void main() {
 
     test("test data response on posts route", () async {
       var _result = await dio.get<Map<String, dynamic>>("/posts/1");
-      var response = DataResponse<Post>.fromReponse(_result);
+
+      /// fist way
+      /// var response = DataResponse<Post>.fromReponse(_result);
+      
+      /// 
+      /// second way
+      var json = _result.data!..addAll({
+        'message': _result.data?["message"] as String? ?? null,
+        'status_message': _result.statusMessage ?? null,
+        'status_code': _result.statusCode
+      });
+      var response = DataResponse<Post>.fromJson(json);
 
       expect(
         response.value != null,
@@ -139,6 +150,8 @@ void main() {
         401,
         reason: "this should be 401 while unauthorized",
       );
+
+      print(response.message);
     });
   });
 }
