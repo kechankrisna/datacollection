@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:dio/dio.dart' show Response;
 
@@ -24,6 +26,9 @@ class DataResponse<T> {
 
   factory DataResponse.fromJson(Map<String, dynamic> json) =>
       _$DataResponseFromJson(json);
+
+  factory DataResponse.fromReponse(Response response) =>
+      _$DataResponseFromResponse<T>(response);
 
   Map<String, dynamic> toJson() => _$DataResponseToJson(this);
 
@@ -81,8 +86,8 @@ DataResponse<T> _$DataResponseFromJson<T>(Map<String, dynamic> json) =>
       statusCode: json['status_code'] as int? ?? 500,
       statusMessage: json['status_message'] as String? ?? '',
       message: json['message'] as String? ?? '',
-      errors: json['errors'] as Map<String, dynamic>? ?? {},
-      data: json['data'] as Map<String, dynamic>? ?? {},
+      errors: json['errors'] as Map<String, dynamic>?,
+      data: json['data'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$DataResponseToJson<T>(DataResponse<T> instance) =>
@@ -94,12 +99,34 @@ Map<String, dynamic> _$DataResponseToJson<T>(DataResponse<T> instance) =>
       'data': instance.data,
     };
 
+DataResponse<T> _$DataResponseFromResponse<T>(Response response) =>
+    DataResponse<T>(
+      statusCode: response.statusCode ?? 500,
+      statusMessage: response.statusMessage ?? '',
+      data: (response.data != null && response.statusCode.inRange(200, 299))
+          ? (response.data! is Map<String, dynamic>)
+              ? (response.data! as Map<String, dynamic>)
+              : json.decode(response.data.toString())
+          : null,
+      message: response.data != null
+          ? (response.data! is Map<String, dynamic>)
+              ? (response.data! as Map<String, dynamic>)['message']
+                      as String? ??
+                  (response.data! as Map<String, dynamic>)['message'].toString()
+              : null
+          : null,
+      errors: (response.data != null)
+          ? (response.data! is Map<String, dynamic>)
+              ? response.data!['errors'] as Map<String, dynamic>?
+              : null
+          : null,
+    );
+
 /// default extension will return values as list of map
 extension DataResponseExtension on DataResponse {
   Map<String, dynamic>? get value =>
       data == null ? null : Map<String, dynamic>.from(data!);
 }
-
 
 /// cast from Response to DataResponse
 extension ResponseExt<T> on Response<T> {
@@ -114,4 +141,12 @@ extension ResponseExt<T> on Response<T> {
             ? (this.data as Map)["errors"]
             : this.data.toString(),
       });
+}
+
+extension StatusCodeExt on int? {
+  bool inRange(int min, int max) {
+    if (this == null) return false;
+    if (this! >= min && this! <= max) return true;
+    return false;
+  }
 }
