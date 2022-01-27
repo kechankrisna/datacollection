@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:dio/dio.dart' show Response;
 
 class DataResponse<T> {
   int statusCode;
@@ -40,22 +41,22 @@ class DataResponse<T> {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     final mapEquals = const DeepCollectionEquality().equals;
-  
+
     return other is DataResponse<T> &&
-      other.statusCode == statusCode &&
-      other.statusMessage == statusMessage &&
-      other.message == message &&
-      mapEquals(other.errors, errors) &&
-      mapEquals(other.data, data);
+        other.statusCode == statusCode &&
+        other.statusMessage == statusMessage &&
+        other.message == message &&
+        mapEquals(other.errors, errors) &&
+        mapEquals(other.data, data);
   }
 
   @override
   int get hashCode {
     return statusCode.hashCode ^
-      statusMessage.hashCode ^
-      message.hashCode ^
-      errors.hashCode ^
-      data.hashCode;
+        statusMessage.hashCode ^
+        message.hashCode ^
+        errors.hashCode ^
+        data.hashCode;
   }
 
   DataResponse<T> copyWith({
@@ -95,5 +96,22 @@ Map<String, dynamic> _$DataResponseToJson<T>(DataResponse<T> instance) =>
 
 /// default extension will return values as list of map
 extension DataResponseExtension on DataResponse {
-  Map<String, dynamic> get value => Map<String, dynamic>.from(data ?? {});
+  Map<String, dynamic>? get value =>
+      data == null ? null : Map<String, dynamic>.from(data!);
+}
+
+
+/// cast from Response to DataResponse
+extension ResponseExt<T> on Response<T> {
+  DataResponse<T> get toDataResponse => DataResponse<T>.fromJson({
+        'status_code': this.statusCode,
+        'status_message': this.statusMessage,
+        'data': this.data,
+        'message': (this.data is Map)
+            ? (this.data as Map)["message"]
+            : this.data.toString(),
+        'errors': (this.data is Map)
+            ? (this.data as Map)["errors"]
+            : this.data.toString(),
+      });
 }
