@@ -31,7 +31,7 @@ extension GeneratedStudentDataResponseExension on DataResponse<Student> {
 @JsonSerializable()
 @DataCollectionAnnotation(
   paginations: true,
-  collections:true,
+  collections: true,
   response: true,
 )
 class Student {}
