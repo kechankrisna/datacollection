@@ -29,5 +29,9 @@ extension GeneratedStudentDataResponseExension on DataResponse<Student> {
 }
 ''', contains: true)
 @JsonSerializable()
-@datacollections
+@DataCollectionAnnotation(
+  paginations: true,
+  collections:true,
+  response: true,
+)
 class Student {}
