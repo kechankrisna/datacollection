@@ -13,9 +13,19 @@ class DataResponseGenerator
       Element element, ConstantReader annotation, BuildStep buildStep) {
     final visitor = ClassVisitor();
     element.visitChildren(visitor);
-
-    final classBuffer = StringBuffer();
     final className = visitor.className;
+    final classBuffer = StringBuffer();
+
+    classBuffer.write(generateStringBuffer(className));
+
+    return classBuffer.toString();
+  }
+
+  /// ### `generateStringBuffer`
+  ///
+  /// allow to generate the boilerplate for data reponse
+  static StringBuffer generateStringBuffer(String className) {
+    final classBuffer = StringBuffer();
 
     /// EX: extension GeneratedUserDataResponse on DataResponse<User> {
     classBuffer.writeln(
@@ -28,6 +38,6 @@ class DataResponseGenerator
 
     classBuffer.writeln('}');
 
-    return classBuffer.toString();
+    return classBuffer;
   }
 }

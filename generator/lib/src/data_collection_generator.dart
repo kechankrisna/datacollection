@@ -1,13 +1,15 @@
-import 'package:build/src/builder/build_step.dart';
+import 'package:build/build.dart';
 import 'package:analyzer/dart/element/element.dart';
-import 'package:source_gen/source_gen.dart';
-
 import 'package:datacollection/datacollection.dart';
+import 'package:source_gen/source_gen.dart';
+import 'pagination_response_generator.dart';
+import 'collection_response_generator.dart';
+import 'data_response_generator.dart';
 
 import 'class_visitor.dart';
 
-class CollectionResponseGenerator
-    extends GeneratorForAnnotation<CollectionResponseAnnotation> {
+class DataCollectionGenerator
+    extends GeneratorForAnnotation<DataCollectionAnnotation> {
   @override
   String generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
@@ -17,17 +19,32 @@ class CollectionResponseGenerator
     final classBuffer = StringBuffer();
     final className = visitor.className;
 
-    /// EX: extension GeneratedUserCollectionResponse on CollectionResponse<User> {
-    classBuffer.writeln(
-        'extension Generated${className}CollectionResponseExension on CollectionResponse<${className}> {');
+    bool enablePaginations = annotation.peek("paginations")?.boolValue ?? false;
+    bool enableCollections = annotation.peek("collections")?.boolValue ?? false;
+    bool enableResponse = annotation.peek("response")?.boolValue ?? false;
 
-    /// EX : List<User> get value => <User>[...data.map((e) => _$UserFromJson(e)).toList()];
+    if (enablePaginations) {
+      final _paginationBuffer =
+          PaginationResponseGenerator.generateStringBuffer(className);
 
-    classBuffer.writeln(
-        'List<${className}> get value => <${className}>[...data.map((e) => _\$${className}FromJson(e)).toList()] ;');
+      classBuffer.write(_paginationBuffer);
+    }
 
-    classBuffer.writeln('}');
+    if (enableCollections) {
+      final _collectionBuff =
+          CollectionResponseGenerator.generateStringBuffer(className);
+      classBuffer.write(_collectionBuff);
+    }
+
+    if (enableResponse) {
+      final _responseBuff =
+          DataResponseGenerator.generateStringBuffer(className);
+
+      classBuffer.write(_responseBuff);
+    }
 
     return classBuffer.toString();
   }
+
+  const DataCollectionGenerator([BuilderOptions? options]);
 }

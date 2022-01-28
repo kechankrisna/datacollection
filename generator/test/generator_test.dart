@@ -1,11 +1,18 @@
-import 'package:test/test.dart';
+import 'dart:async';
+import 'package:build/build.dart';
+import 'package:datacollection_generator/src/data_collection_generator.dart';
+import 'package:source_gen_test/src/build_log_tracking.dart';
+import 'package:source_gen_test/src/init_library_reader.dart';
+import 'package:source_gen_test/src/test_annotated_classes.dart';
 
-import 'package:datacollection_generator/datacollection_generator.dart';
-
-
-
-void main() {
-  test('adds one to input values', () {
-    
+Future<void> main() async {
+  final reader = await initializeLibraryReaderForDirectory(
+      'test/src', 'generator_test_src.dart');
+  initializeBuildLogTracking();
+  var options = BuilderOptions({
+    'paginations': true,
+    'collections': true,
+    'response': true,
   });
+  testAnnotatedElements(reader, DataCollectionGenerator(options));
 }

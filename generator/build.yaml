@@ -2,7 +2,7 @@ builders:
   datacollection_generator:
     target: ":datacollection"
     import: "package:datacollection_generator/datacollection_generator.dart"
-    builder_factories: ["paginationExtension", "collectionExtension", "dataExtension"]
+    builder_factories: ["dataCollectionExtension", "paginationExtension", "collectionExtension", "dataExtension"]
     build_extensions: { ".dart": [".g.dart"] }
     auto_apply: dependents
     build_to: cache

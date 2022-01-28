@@ -18,8 +18,29 @@ class DataResponseAnnotation {
   const DataResponseAnnotation();
 }
 
+@immutable
+class DataCollectionAnnotation {
+  /// to enable paginations generator
+  final bool? paginations;
+
+  /// to enable collections generator
+  final bool? collections;
+
+  /// to enable response generator
+  final bool? response;
+
+  /// constructor
+  const DataCollectionAnnotation({
+    this.paginations,
+    this.collections,
+    this.response,
+  });
+}
+
 const paginations = PaginationResponseAnnotation();
 
 const collections = CollectionResponseAnnotation();
 
 const response = DataResponseAnnotation();
+
+const datacollections = DataCollectionAnnotation(paginations: true, collections: true, response: true);

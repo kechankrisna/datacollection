@@ -4,6 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'student.g.dart';
 
 @JsonSerializable()
+/// @datacollections
 @paginations
 @collections
 @response

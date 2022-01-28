@@ -13,9 +13,18 @@ class PaginationResponseGenerator
       Element element, ConstantReader annotation, BuildStep buildStep) {
     final visitor = ClassVisitor();
     element.visitChildren(visitor);
-
-    final classBuffer = StringBuffer();
     final className = visitor.className;
+
+    final classBuffer = generateStringBuffer(className);
+
+    return classBuffer.toString();
+  }
+
+  /// ### `generateStringBuffer`
+  ///
+  /// allow to generate the boilerplate for pagination reponse
+  static StringBuffer generateStringBuffer(String className) {
+    final classBuffer = StringBuffer();
 
     /// EX: extension GeneratedUserPaginationResponse on PaginationResponse<User> {
     classBuffer.writeln(
@@ -28,6 +37,6 @@ class PaginationResponseGenerator
 
     classBuffer.writeln('}');
 
-    return classBuffer.toString();
+    return classBuffer;
   }
 }
