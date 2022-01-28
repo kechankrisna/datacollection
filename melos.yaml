@@ -1,0 +1,14 @@
+name: datacollection
+
+packages:
+  - /**
+
+scripts:
+  analyze: 
+    run: melos exec -- "dart analyze . --fail-fast"
+  test: 
+    run: melos exec  -c 1 --fail-fast --coverage "dart test"
+    description: Run Dart tests for a specific package in this project.
+    select-package:
+      flutter: false
+      dir-exists: test
