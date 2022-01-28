@@ -21,7 +21,7 @@ class CollectionResponseGenerator
   }
 
   /// ### `generateStringBuffer`
-  /// 
+  ///
   /// allow to generate the boilerplate for data reponse
   static StringBuffer generateStringBuffer(String className) {
     final classBuffer = StringBuffer();
@@ -39,5 +39,4 @@ class CollectionResponseGenerator
 
     return classBuffer;
   }
-
 }

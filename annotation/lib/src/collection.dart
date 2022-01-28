@@ -43,4 +43,5 @@ const collections = CollectionResponseAnnotation();
 
 const response = DataResponseAnnotation();
 
-const datacollections = DataCollectionAnnotation(paginations: true, collections: true, response: true);
+const datacollections = DataCollectionAnnotation(
+    paginations: true, collections: true, response: true);

@@ -54,7 +54,8 @@ CollectionResponse<T> _$DataCollectionFromJson<T>(Map<String, dynamic> json) =>
           [],
     );
 
-Map<String, dynamic> _$DataCollectionToJson<T>(CollectionResponse<T> instance) =>
+Map<String, dynamic> _$DataCollectionToJson<T>(
+        CollectionResponse<T> instance) =>
     <String, dynamic>{
       'data': instance.data,
       'total': instance.total,

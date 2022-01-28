@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/element/visitor.dart';
 import 'package:analyzer/dart/element/element.dart';
 
-
 class ClassVisitor extends SimpleElementVisitor<void> {
   /// visit to capture class name and its properties
   late String className;
@@ -34,5 +33,4 @@ class ClassVisitor extends SimpleElementVisitor<void> {
 
     super.visitFunctionElement(element);
   }
-
 }
