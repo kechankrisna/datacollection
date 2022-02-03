@@ -46,6 +46,17 @@ void main() {
       );
     });
 
+    test("retrofit test Post", () async {
+      var service = ClientPost(ApplicationService.client);
+      var post = await service.getPost(1);
+      expect(
+        post.value.runtimeType,
+        Post,
+        reason: "the result should be done fromJson",
+      );
+      print(post.value);
+    });
+
     /// test("test response on home", () async {
     ///   Response response = await dio.get("/");
     ///   print(response.data);

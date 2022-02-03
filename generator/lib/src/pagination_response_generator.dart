@@ -28,7 +28,7 @@ class PaginationResponseGenerator
 
     /// EX: extension GeneratedUserPaginationResponse on PaginationResponse<User> {
     classBuffer.writeln(
-        'extension Generated${className}PaginationResponseExension on PaginationResponse<${className}> {');
+        'extension Generated${className}PaginationResponseExtension on PaginationResponse<${className}> {');
 
     /// EX : List<User> get value => <User>[...data.map((e) => _$UserFromJson(e)).toList()];
 

@@ -1,13 +1,11 @@
 import 'package:datacollection/datacollection.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:retrofit/retrofit.dart';
 
 part 'student.g.dart';
 
 @JsonSerializable()
-/// @datacollections
-@paginations
-@collections
-@response
+@datacollections
 class Student {
   final String? name;
   final num? grade;

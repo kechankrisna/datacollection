@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:datacollection/datacollection.dart';
-
+import 'package:retrofit/retrofit.dart';
 part 'user.g.dart';
 
 @JsonSerializable()

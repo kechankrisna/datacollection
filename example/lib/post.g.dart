@@ -6,7 +6,7 @@ part of 'post.dart';
 // CollectionResponseGenerator
 // **************************************************************************
 
-extension GeneratedPostCollectionResponseExension on CollectionResponse<Post> {
+extension GeneratedPostCollectionResponseExtension on CollectionResponse<Post> {
   List<Post> get value =>
       <Post>[...data.map((e) => _$PostFromJson(e)).toList()];
 }
@@ -15,8 +15,16 @@ extension GeneratedPostCollectionResponseExension on CollectionResponse<Post> {
 // DataResponseGenerator
 // **************************************************************************
 
-extension GeneratedPostDataResponseExension on DataResponse<Post> {
+extension GeneratedPostDataResponseExtension on DataResponse<Post> {
   Post? get value => data == null ? null : _$PostFromJson(data!);
+}
+
+extension GeneratedPostHttpResponseExtension on HttpResponse<Post> {
+  Post? get value => (this.response.data != null &&
+          (this.response.data is Map<String, dynamic>) &&
+          [200].contains(this.response.statusCode))
+      ? Post.fromJson((this.response.data! as Map<String, dynamic>)["data"])
+      : null;
 }
 
 // **************************************************************************
@@ -52,7 +60,7 @@ Map<String, dynamic> _$PostToJson(Post instance) => <String, dynamic>{
 // PaginationResponseGenerator
 // **************************************************************************
 
-extension GeneratedPostPaginationResponseExension on PaginationResponse<Post> {
+extension GeneratedPostPaginationResponseExtension on PaginationResponse<Post> {
   List<Post> get value =>
       <Post>[...data.map((e) => _$PostFromJson(e)).toList()];
 }

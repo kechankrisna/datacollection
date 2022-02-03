@@ -6,7 +6,7 @@ part of 'user.dart';
 // CollectionResponseGenerator
 // **************************************************************************
 
-extension GeneratedUserCollectionResponseExension on CollectionResponse<User> {
+extension GeneratedUserCollectionResponseExtension on CollectionResponse<User> {
   List<User> get value =>
       <User>[...data.map((e) => _$UserFromJson(e)).toList()];
 }
@@ -15,8 +15,16 @@ extension GeneratedUserCollectionResponseExension on CollectionResponse<User> {
 // DataResponseGenerator
 // **************************************************************************
 
-extension GeneratedUserDataResponseExension on DataResponse<User> {
+extension GeneratedUserDataResponseExtension on DataResponse<User> {
   User? get value => data == null ? null : _$UserFromJson(data!);
+}
+
+extension GeneratedUserHttpResponseExtension on HttpResponse<User> {
+  User? get value => (this.response.data != null &&
+          (this.response.data is Map<String, dynamic>) &&
+          [200].contains(this.response.statusCode))
+      ? User.fromJson((this.response.data! as Map<String, dynamic>)["data"])
+      : null;
 }
 
 // **************************************************************************
@@ -39,7 +47,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
 // PaginationResponseGenerator
 // **************************************************************************
 
-extension GeneratedUserPaginationResponseExension on PaginationResponse<User> {
+extension GeneratedUserPaginationResponseExtension on PaginationResponse<User> {
   List<User> get value =>
       <User>[...data.map((e) => _$UserFromJson(e)).toList()];
 }

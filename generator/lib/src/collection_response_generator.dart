@@ -28,7 +28,7 @@ class CollectionResponseGenerator
 
     /// EX: extension GeneratedUserCollectionResponse on CollectionResponse<User> {
     classBuffer.writeln(
-        'extension Generated${className}CollectionResponseExension on CollectionResponse<${className}> {');
+        'extension Generated${className}CollectionResponseExtension on CollectionResponse<${className}> {');
 
     /// EX : List<User> get value => <User>[...data.map((e) => _$UserFromJson(e)).toList()];
 

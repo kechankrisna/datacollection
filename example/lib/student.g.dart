@@ -3,21 +3,31 @@
 part of 'student.dart';
 
 // **************************************************************************
-// CollectionResponseGenerator
+// DataCollectionGenerator
 // **************************************************************************
 
-extension GeneratedStudentCollectionResponseExension
+extension GeneratedStudentPaginationResponseExtension
+    on PaginationResponse<Student> {
+  List<Student> get value =>
+      <Student>[...data.map((e) => _$StudentFromJson(e)).toList()];
+}
+
+extension GeneratedStudentCollectionResponseExtension
     on CollectionResponse<Student> {
   List<Student> get value =>
       <Student>[...data.map((e) => _$StudentFromJson(e)).toList()];
 }
 
-// **************************************************************************
-// DataResponseGenerator
-// **************************************************************************
-
-extension GeneratedStudentDataResponseExension on DataResponse<Student> {
+extension GeneratedStudentDataResponseExtension on DataResponse<Student> {
   Student? get value => data == null ? null : _$StudentFromJson(data!);
+}
+
+extension GeneratedStudentHttpResponseExtension on HttpResponse<Student> {
+  Student? get value => (this.response.data != null &&
+          (this.response.data is Map<String, dynamic>) &&
+          [200].contains(this.response.statusCode))
+      ? Student.fromJson((this.response.data! as Map<String, dynamic>)["data"])
+      : null;
 }
 
 // **************************************************************************
@@ -35,13 +45,3 @@ Map<String, dynamic> _$StudentToJson(Student instance) => <String, dynamic>{
       'grade': instance.grade,
       'score': instance.score,
     };
-
-// **************************************************************************
-// PaginationResponseGenerator
-// **************************************************************************
-
-extension GeneratedStudentPaginationResponseExension
-    on PaginationResponse<Student> {
-  List<Student> get value =>
-      <Student>[...data.map((e) => _$StudentFromJson(e)).toList()];
-}
