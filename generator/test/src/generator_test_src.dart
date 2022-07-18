@@ -3,19 +3,19 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:source_gen_test/annotations.dart';
 
 @ShouldGenerate(r'''
-extension GeneratedPostCollectionResponseExension on CollectionResponse<Post> {
+extension GeneratedPostCollectionResponseExtension on CollectionResponse<Post> {
   List<Post> get value =>
       <Post>[...data.map((e) => _$PostFromJson(e)).toList()];
 }
 ''', contains: true)
 @ShouldGenerate(r'''
-extension GeneratedPostPaginationResponseExension on PaginationResponse<Post> {
+extension GeneratedPostPaginationResponseExtension on PaginationResponse<Post> {
   List<Post> get value =>
       <Post>[...data.map((e) => _$PostFromJson(e)).toList()];
 }
 ''', contains: true)
 @ShouldGenerate(r'''
-extension GeneratedPostDataResponseExension on DataResponse<Post> {
+extension GeneratedPostDataResponseExtension on DataResponse<Post> {
   Post? get value => data == null ? null : _$PostFromJson(data!);
 }
 ''', contains: true)
@@ -24,7 +24,7 @@ extension GeneratedPostDataResponseExension on DataResponse<Post> {
 class Post {}
 
 @ShouldGenerate(r'''
-extension GeneratedStudentDataResponseExension on DataResponse<Student> {
+extension GeneratedStudentDataResponseExtension on DataResponse<Student> {
   Student? get value => data == null ? null : _$StudentFromJson(data!);
 }
 ''', contains: true)
