@@ -1,3 +1,7 @@
+### 0.0.3+1
+
+* flutter_test meta
+
 ### 0.0.3
 
 * dart sdk version
