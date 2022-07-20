@@ -19,6 +19,11 @@ class DataResponseAnnotation {
 }
 
 @immutable
+class ComputedAnnotation {
+  const ComputedAnnotation();
+}
+
+@immutable
 class DataCollectionAnnotation {
   /// to enable paginations generator
   final bool? paginations;
@@ -29,11 +34,15 @@ class DataCollectionAnnotation {
   /// to enable response generator
   final bool? response;
 
+  /// to enable compute
+  final bool? computed;
+
   /// constructor
   const DataCollectionAnnotation({
     this.paginations,
     this.collections,
     this.response,
+    this.computed,
   });
 }
 
@@ -43,5 +52,7 @@ const collections = CollectionResponseAnnotation();
 
 const response = DataResponseAnnotation();
 
+const computed = ComputedAnnotation();
+
 const datacollections = DataCollectionAnnotation(
-    paginations: true, collections: true, response: true);
+    paginations: true, collections: true, response: true, computed: true);
