@@ -30,6 +30,13 @@ extension GeneratedStudentHttpResponseExtension on HttpResponse<Student> {
       : null;
 }
 
+Student deserializeStudent(Map<String, dynamic> json) => Student.fromJson(json);
+List<Student> deserializeStudentList(List<Map<String, dynamic>> json) =>
+    json.map((e) => Student.fromJson(e)).toList();
+Map<String, dynamic> serializeStudent(Student object) => object.toJson();
+List<Map<String, dynamic>> serializeStudentList(List<Student> objects) =>
+    objects.map((e) => e.toJson()).toList();
+
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************

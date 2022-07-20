@@ -21,6 +21,7 @@ abstract class ClientPost {
 @paginations
 @collections
 @response
+@computed
 class Post {
   @JsonKey(defaultValue: null)
   final int? id;
