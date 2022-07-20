@@ -2,6 +2,7 @@ import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 import 'src/pagination_response_generator.dart';
 import 'src/collection_response_generator.dart';
+import 'src/computed_generator.dart';
 import 'src/data_response_generator.dart';
 import 'src/data_collection_generator.dart';
 
@@ -16,3 +17,6 @@ Builder dataExtension(BuilderOptions options) =>
 
 Builder dataCollectionExtension(BuilderOptions options) =>
     SharedPartBuilder([DataCollectionGenerator()], 'data_collection');
+
+Builder dataComputedExtension(BuilderOptions options) =>
+    SharedPartBuilder([ComputedGenerator()], 'computed');

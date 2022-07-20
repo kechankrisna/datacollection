@@ -28,10 +28,19 @@ extension GeneratedStudentDataResponseExtension on DataResponse<Student> {
   Student? get value => data == null ? null : _$StudentFromJson(data!);
 }
 ''', contains: true)
+@ShouldGenerate(r'''
+Student deserializeStudent(Map<String, dynamic> json) => Student.fromJson(json);
+List<Student> deserializeStudentList(List<Map<String, dynamic>> json) =>
+    json.map((e) => Student.fromJson(e)).toList();
+Map<String, dynamic> serializeStudent(Student object) => object.toJson();
+List<Map<String, dynamic>> serializeStudentList(List<Student> objects) =>
+    objects.map((e) => e.toJson()).toList();
+''', contains: true)
 @JsonSerializable()
 @DataCollectionAnnotation(
   paginations: true,
   collections: true,
   response: true,
+  computed: true,
 )
 class Student {}

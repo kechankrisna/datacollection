@@ -9,7 +9,8 @@ environment:
 dependencies:
   build: ^2.3.0
   source_gen: ^1.0.1
-  datacollection: ^0.0.3
+  datacollection: 
+    path: ../annotation
   dio: ^4.0.5
   built_collection: ^5.0.0
   code_builder: ^4.0.0

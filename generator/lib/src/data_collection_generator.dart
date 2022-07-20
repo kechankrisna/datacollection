@@ -2,6 +2,7 @@ import 'package:build/build.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:datacollection/datacollection.dart';
 import 'package:source_gen/source_gen.dart';
+import 'computed_generator.dart';
 import 'pagination_response_generator.dart';
 import 'collection_response_generator.dart';
 import 'data_response_generator.dart';
@@ -22,6 +23,7 @@ class DataCollectionGenerator
     bool enablePaginations = annotation.peek("paginations")?.boolValue ?? false;
     bool enableCollections = annotation.peek("collections")?.boolValue ?? false;
     bool enableResponse = annotation.peek("response")?.boolValue ?? false;
+    bool enableComputed = annotation.peek("computed")?.boolValue ?? false;
 
     if (enablePaginations) {
       final _paginationBuffer =
@@ -39,6 +41,13 @@ class DataCollectionGenerator
     if (enableResponse) {
       final _responseBuff =
           DataResponseGenerator.generateStringBuffer(className);
+
+      classBuffer.write(_responseBuff);
+    }
+
+    if (enableComputed) {
+      final _responseBuff =
+          ComputedGenerator.generateStringBuffer(className);
 
       classBuffer.write(_responseBuff);
     }
