@@ -1,3 +1,7 @@
+### 0.0.3+2
+
+* computed annotation
+
 ### 0.0.3+1
 
 * flutter_test meta
