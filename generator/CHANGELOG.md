@@ -1,3 +1,7 @@
+## 0.0.3+1
+
+* add enabledCompute for serialize and deserialize
+
 ## 0.0.3
 
 * flutter 3
