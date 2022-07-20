@@ -13,6 +13,7 @@ Future<void> main() async {
     'paginations': true,
     'collections': true,
     'response': true,
+    'computed': true,
   });
   testAnnotatedElements(reader, DataCollectionGenerator(options));
 }
