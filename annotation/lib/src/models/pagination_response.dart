@@ -40,14 +40,14 @@ class PaginationResponse<T> {
   });
 
   factory PaginationResponse.fromJson(Map<String, dynamic> json) =>
-      _$PaginateCollectionFromJson(json);
+      _$PaginationResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PaginateCollectionToJson(this);
+  Map<String, dynamic> toJson() => _$PaginationResponseToJson(this);
 
   factory PaginationResponse.fromMap(Map<String, dynamic> map) =>
-      _$PaginateCollectionFromJson(map);
+      _$PaginationResponseFromJson(map);
 
-  Map<String, dynamic> toMap() => _$PaginateCollectionToJson(this);
+  Map<String, dynamic> toMap() => _$PaginationResponseToJson(this);
 
   PaginationResponse<T> copyWith({
     int? currentPage,
@@ -81,7 +81,7 @@ class PaginationResponse<T> {
 
   @override
   String toString() {
-    return 'PaginateCollection(currentPage: $currentPage, data: $data, firstPageUrl: $firstPageUrl, from: $from, lastPage: $lastPage, lastPageUrl: $lastPageUrl, nextPageUrl: $nextPageUrl, path: $path, perPage: $perPage, prevPageUrl: $prevPageUrl, to: $to, total: $total)';
+    return 'PaginationResponse(currentPage: $currentPage, data: $data, firstPageUrl: $firstPageUrl, from: $from, lastPage: $lastPage, lastPageUrl: $lastPageUrl, nextPageUrl: $nextPageUrl, path: $path, perPage: $perPage, prevPageUrl: $prevPageUrl, to: $to, total: $total)';
   }
 
   @override
@@ -121,7 +121,7 @@ class PaginationResponse<T> {
   }
 }
 
-PaginationResponse<T> _$PaginateCollectionFromJson<T>(
+PaginationResponse<T> _$PaginationResponseFromJson<T>(
         Map<String, dynamic> json) =>
     PaginationResponse<T>(
       currentPage: json['current_page'] as int? ?? 1,
@@ -141,7 +141,7 @@ PaginationResponse<T> _$PaginateCollectionFromJson<T>(
       total: json['total'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$PaginateCollectionToJson<T>(
+Map<String, dynamic> _$PaginationResponseToJson<T>(
         PaginationResponse<T> instance) =>
     <String, dynamic>{
       'current_page': instance.currentPage,
@@ -159,6 +159,6 @@ Map<String, dynamic> _$PaginateCollectionToJson<T>(
     };
 
 /// default extension will return values as list of map
-extension PaginateCollectionExention on PaginationResponse {
+extension PaginationResponseExention on PaginationResponse {
   List<Map<String, dynamic>> get value => <Map<String, dynamic>>[...data];
 }
