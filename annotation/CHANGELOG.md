@@ -1,3 +1,7 @@
+### 0.0.3+4
+
+* casting value int?
+
 ### 0.0.3+3
 
 * fixed fromMap snack_case
