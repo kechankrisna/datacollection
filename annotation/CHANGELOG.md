@@ -1,3 +1,7 @@
+### 0.0.3+3
+
+* fixed fromMap snack_case
+
 ### 0.0.3+2
 
 * computed annotation

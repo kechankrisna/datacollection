@@ -124,19 +124,19 @@ class PaginationResponse<T> {
 PaginationResponse<T> _$PaginateCollectionFromJson<T>(
         Map<String, dynamic> json) =>
     PaginationResponse<T>(
-      currentPage: json['currentPage'] as int? ?? 1,
+      currentPage: json['current_page'] as int? ?? 1,
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
               .toList() ??
           [],
-      firstPageUrl: json['firstPageUrl'] as String?,
+      firstPageUrl: json['first_page_url'] as String?,
       from: json['from'] as int? ?? 1,
-      lastPage: json['lastPage'] as int? ?? 1,
-      lastPageUrl: json['lastPageUrl'] as String?,
-      nextPageUrl: json['nextPageUrl'] as String?,
+      lastPage: json['last_page'] as int? ?? 1,
+      lastPageUrl: json['last_page_url'] as String?,
+      nextPageUrl: json['next_page_url'] as String?,
       path: json['path'] as String?,
-      perPage: json['perPage'] as int? ?? 1,
-      prevPageUrl: json['prevPageUrl'] as String?,
+      perPage: json['per_page'] as int? ?? 1,
+      prevPageUrl: json['prev_page_url'] as String?,
       to: json['to'] as int? ?? 1,
       total: json['total'] as int? ?? 0,
     );
@@ -144,16 +144,16 @@ PaginationResponse<T> _$PaginateCollectionFromJson<T>(
 Map<String, dynamic> _$PaginateCollectionToJson<T>(
         PaginationResponse<T> instance) =>
     <String, dynamic>{
-      'currentPage': instance.currentPage,
+      'current_page': instance.currentPage,
       'data': instance.data,
-      'firstPageUrl': instance.firstPageUrl,
+      'first_page_url': instance.firstPageUrl,
       'from': instance.from,
-      'lastPage': instance.lastPage,
-      'lastPageUrl': instance.lastPageUrl,
-      'nextPageUrl': instance.nextPageUrl,
+      'last_page': instance.lastPage,
+      'last_page_url': instance.lastPageUrl,
+      'next_page_url': instance.nextPageUrl,
       'path': instance.path,
-      'perPage': instance.perPage,
-      'prevPageUrl': instance.prevPageUrl,
+      'per_page': instance.perPage,
+      'prev_page_url': instance.prevPageUrl,
       'to': instance.to,
       'total': instance.total,
     };
