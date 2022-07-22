@@ -124,21 +124,21 @@ class PaginationResponse<T> {
 PaginationResponse<T> _$PaginationResponseFromJson<T>(
         Map<String, dynamic> json) =>
     PaginationResponse<T>(
-      currentPage: json['current_page'] as int? ?? 1,
+      currentPage: int.tryParse(json['current_page'].toString()) ?? 1,
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
               .toList() ??
           [],
       firstPageUrl: json['first_page_url'] as String?,
-      from: json['from'] as int? ?? 1,
-      lastPage: json['last_page'] as int? ?? 1,
+      from: int.tryParse(json['from'].toString()) ?? 1,
+      lastPage: int.tryParse(json['last_page'].toString()) ?? 1,
       lastPageUrl: json['last_page_url'] as String?,
       nextPageUrl: json['next_page_url'] as String?,
       path: json['path'] as String?,
-      perPage: json['per_page'] as int? ?? 1,
+      perPage: int.tryParse(json['per_page'].toString()) ?? 1,
       prevPageUrl: json['prev_page_url'] as String?,
-      to: json['to'] as int? ?? 1,
-      total: json['total'] as int? ?? 0,
+      to: int.tryParse(json['to'].toString()) ?? 1,
+      total: int.tryParse(json['total'].toString()) ?? 0,
     );
 
 Map<String, dynamic> _$PaginationResponseToJson<T>(
