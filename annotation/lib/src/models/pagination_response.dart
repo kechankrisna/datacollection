@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
 
 class PaginationResponse<T> {
+  SortPaginationResponse? sort;
+
   int? currentPage;
 
   List<Map<String, dynamic>> data;
@@ -25,6 +29,7 @@ class PaginationResponse<T> {
 
   int? total;
   PaginationResponse({
+    this.sort,
     this.currentPage,
     required this.data,
     this.firstPageUrl,
@@ -50,6 +55,7 @@ class PaginationResponse<T> {
   Map<String, dynamic> toMap() => _$PaginationResponseToJson(this);
 
   PaginationResponse<T> copyWith({
+    SortPaginationResponse? sort,
     int? currentPage,
     List<Map<String, dynamic>>? data,
     String? firstPageUrl,
@@ -64,6 +70,7 @@ class PaginationResponse<T> {
     int? total,
   }) {
     return PaginationResponse<T>(
+      sort: sort ?? this.sort,
       currentPage: currentPage ?? this.currentPage,
       data: data ?? this.data,
       firstPageUrl: firstPageUrl ?? this.firstPageUrl,
@@ -81,7 +88,7 @@ class PaginationResponse<T> {
 
   @override
   String toString() {
-    return 'PaginationResponse(currentPage: $currentPage, data: $data, firstPageUrl: $firstPageUrl, from: $from, lastPage: $lastPage, lastPageUrl: $lastPageUrl, nextPageUrl: $nextPageUrl, path: $path, perPage: $perPage, prevPageUrl: $prevPageUrl, to: $to, total: $total)';
+    return 'PaginationResponse(sort: $sort, currentPage: $currentPage, data: $data, firstPageUrl: $firstPageUrl, from: $from, lastPage: $lastPage, lastPageUrl: $lastPageUrl, nextPageUrl: $nextPageUrl, path: $path, perPage: $perPage, prevPageUrl: $prevPageUrl, to: $to, total: $total)';
   }
 
   @override
@@ -90,6 +97,7 @@ class PaginationResponse<T> {
     final listEquals = const DeepCollectionEquality().equals;
 
     return other is PaginationResponse<T> &&
+        other.sort == sort &&
         other.currentPage == currentPage &&
         listEquals(other.data, data) &&
         other.firstPageUrl == firstPageUrl &&
@@ -106,7 +114,8 @@ class PaginationResponse<T> {
 
   @override
   int get hashCode {
-    return currentPage.hashCode ^
+    return sort.hashCode ^
+        currentPage.hashCode ^
         data.hashCode ^
         firstPageUrl.hashCode ^
         from.hashCode ^
@@ -124,6 +133,9 @@ class PaginationResponse<T> {
 PaginationResponse<T> _$PaginationResponseFromJson<T>(
         Map<String, dynamic> json) =>
     PaginationResponse<T>(
+      sort: (json['sort'] as Map?) == null
+          ? null
+          : SortPaginationResponse.fromJson((json['sort'])),
       currentPage: int.tryParse(json['current_page'].toString()) ?? 1,
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
@@ -144,6 +156,7 @@ PaginationResponse<T> _$PaginationResponseFromJson<T>(
 Map<String, dynamic> _$PaginationResponseToJson<T>(
         PaginationResponse<T> instance) =>
     <String, dynamic>{
+      'sort': instance.sort,
       'current_page': instance.currentPage,
       'data': instance.data,
       'first_page_url': instance.firstPageUrl,
@@ -161,4 +174,67 @@ Map<String, dynamic> _$PaginationResponseToJson<T>(
 /// default extension will return values as list of map
 extension PaginationResponseExention on PaginationResponse {
   List<Map<String, dynamic>> get value => <Map<String, dynamic>>[...data];
+}
+
+class SortPaginationResponse {
+  List<String> keys;
+  String? orderBy;
+  String? orderType;
+
+  SortPaginationResponse({
+    required this.keys,
+    this.orderBy,
+    this.orderType,
+  });
+
+  SortPaginationResponse copyWith({
+    List<String>? keys,
+    String? orderBy,
+    String? orderType,
+  }) {
+    return SortPaginationResponse(
+      keys: keys ?? this.keys,
+      orderBy: orderBy ?? this.orderBy,
+      orderType: orderType ?? this.orderType,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'keys': keys,
+      'order_by': orderBy,
+      'order_type': orderType,
+    };
+  }
+
+  factory SortPaginationResponse.fromMap(Map<String, dynamic> map) {
+    return SortPaginationResponse(
+      keys: List<String>.from(map['keys']),
+      orderBy: map['order_by'],
+      orderType: map['order_type'],
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory SortPaginationResponse.fromJson(String source) =>
+      SortPaginationResponse.fromMap(json.decode(source));
+
+  @override
+  String toString() =>
+      'SortPaginationResponse(keys: $keys, orderBy: $orderBy, orderType: $orderType)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other is SortPaginationResponse &&
+        listEquals(other.keys, keys) &&
+        other.orderBy == orderBy &&
+        other.orderType == orderType;
+  }
+
+  @override
+  int get hashCode => keys.hashCode ^ orderBy.hashCode ^ orderType.hashCode;
 }

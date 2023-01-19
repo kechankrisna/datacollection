@@ -1,6 +1,6 @@
 name: datacollection_generator
 description: datacollection generator
-version: 0.0.3+3
+version: 0.0.3+4
 homepage: https://github.com/kechankrisna/datacollection
 
 environment:

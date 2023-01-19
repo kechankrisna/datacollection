@@ -1,3 +1,7 @@
+## 0.0.3+4
+
+* add sort key to pagination
+
 ## 0.0.3+3
 
 * update package
