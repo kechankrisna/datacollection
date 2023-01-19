@@ -1,3 +1,7 @@
+### 0.0.3+5
+
+* add sort key
+
 ### 0.0.3+4
 
 * casting value int?
