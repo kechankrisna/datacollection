@@ -133,9 +133,11 @@ class PaginationResponse<T> {
 PaginationResponse<T> _$PaginationResponseFromJson<T>(
         Map<String, dynamic> json) =>
     PaginationResponse<T>(
-      sort: (json['sort'] as Map?) == null
+      sort: !json.containsKey('sort') || json['sort'] == null
           ? null
-          : SortPaginationResponse.fromJson((json['sort'])),
+          : (json['sort'] is Map
+              ? SortPaginationResponse.fromMap(Map.from(json['sort']))
+              : SortPaginationResponse.fromJson(json['sort'])),
       currentPage: int.tryParse(json['current_page'].toString()) ?? 1,
       data: (json['data'] as List<dynamic>?)
               ?.map((e) => e as Map<String, dynamic>)
