@@ -1,3 +1,7 @@
+### 0.0.3+6
+
+* add parsing test
+
 ### 0.0.3+5
 
 * add sort key
