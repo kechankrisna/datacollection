@@ -3,8 +3,8 @@
 # type of package. It can be specified at the top-lever as a single value or
 # an array. Alternatively, you can specify the SDK version(s) within each job.
 sdk:
-  - 2.15.0
-  - dev
+  - 3.0.6
+  - stable
 
 stages:
   # Register two jobs to run under the `analyze` stage.

@@ -16,22 +16,22 @@ env:
 
 jobs:
   job_001:
-    name: "cron; linux; Dart 2.15.0; PKG: annotation; `dart test`"
+    name: "cron; linux; Dart 3.0.6; PKG: annotation; `dart test`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0;packages:annotation;commands:test"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6;packages:annotation;commands:test"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0;packages:annotation
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6;packages:annotation
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: annotation_pub_upgrade
@@ -45,22 +45,22 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_002:
-    name: "cron; linux; Dart 2.15.0; PKG: example; `dart test`"
+    name: "cron; linux; Dart 3.0.6; PKG: example; `dart test`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0;packages:example;commands:test"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6;packages:example;commands:test"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0;packages:example
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6;packages:example
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: example_pub_upgrade
@@ -74,22 +74,22 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_003:
-    name: "cron; linux; Dart 2.15.0; PKG: generator; `dart test`"
+    name: "cron; linux; Dart 3.0.6; PKG: generator; `dart test`"
     runs-on: ubuntu-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0;packages:generator;commands:test"
+          key: "os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6;packages:generator;commands:test"
           restore-keys: |
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0;packages:generator
-            os:ubuntu-latest;pub-cache-hosted;sdk:2.15.0
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6;packages:generator
+            os:ubuntu-latest;pub-cache-hosted;sdk:3.0.6
             os:ubuntu-latest;pub-cache-hosted
             os:ubuntu-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: generator_pub_upgrade
@@ -190,22 +190,22 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_007:
-    name: "cron; macos; Dart 2.15.0; PKG: annotation; `dart test`"
+    name: "cron; macos; Dart 3.0.6; PKG: annotation; `dart test`"
     runs-on: macos-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:macos-latest;pub-cache-hosted;sdk:2.15.0;packages:annotation;commands:test"
+          key: "os:macos-latest;pub-cache-hosted;sdk:3.0.6;packages:annotation;commands:test"
           restore-keys: |
-            os:macos-latest;pub-cache-hosted;sdk:2.15.0;packages:annotation
-            os:macos-latest;pub-cache-hosted;sdk:2.15.0
+            os:macos-latest;pub-cache-hosted;sdk:3.0.6;packages:annotation
+            os:macos-latest;pub-cache-hosted;sdk:3.0.6
             os:macos-latest;pub-cache-hosted
             os:macos-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: annotation_pub_upgrade
@@ -219,22 +219,22 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_008:
-    name: "cron; macos; Dart 2.15.0; PKG: example; `dart test`"
+    name: "cron; macos; Dart 3.0.6; PKG: example; `dart test`"
     runs-on: macos-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:macos-latest;pub-cache-hosted;sdk:2.15.0;packages:example;commands:test"
+          key: "os:macos-latest;pub-cache-hosted;sdk:3.0.6;packages:example;commands:test"
           restore-keys: |
-            os:macos-latest;pub-cache-hosted;sdk:2.15.0;packages:example
-            os:macos-latest;pub-cache-hosted;sdk:2.15.0
+            os:macos-latest;pub-cache-hosted;sdk:3.0.6;packages:example
+            os:macos-latest;pub-cache-hosted;sdk:3.0.6
             os:macos-latest;pub-cache-hosted
             os:macos-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: example_pub_upgrade
@@ -248,22 +248,22 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_009:
-    name: "cron; macos; Dart 2.15.0; PKG: generator; `dart test`"
+    name: "cron; macos; Dart 3.0.6; PKG: generator; `dart test`"
     runs-on: macos-latest
     steps:
       - name: Cache Pub hosted dependencies
         uses: actions/cache@v2.1.7
         with:
           path: "~/.pub-cache/hosted"
-          key: "os:macos-latest;pub-cache-hosted;sdk:2.15.0;packages:generator;commands:test"
+          key: "os:macos-latest;pub-cache-hosted;sdk:3.0.6;packages:generator;commands:test"
           restore-keys: |
-            os:macos-latest;pub-cache-hosted;sdk:2.15.0;packages:generator
-            os:macos-latest;pub-cache-hosted;sdk:2.15.0
+            os:macos-latest;pub-cache-hosted;sdk:3.0.6;packages:generator
+            os:macos-latest;pub-cache-hosted;sdk:3.0.6
             os:macos-latest;pub-cache-hosted
             os:macos-latest
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: generator_pub_upgrade
@@ -364,12 +364,12 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_013:
-    name: "cron; windows; Dart 2.15.0; PKG: annotation; `dart test`"
+    name: "cron; windows; Dart 3.0.6; PKG: annotation; `dart test`"
     runs-on: windows-latest
     steps:
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: annotation_pub_upgrade
@@ -383,12 +383,12 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_014:
-    name: "cron; windows; Dart 2.15.0; PKG: example; `dart test`"
+    name: "cron; windows; Dart 3.0.6; PKG: example; `dart test`"
     runs-on: windows-latest
     steps:
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: example_pub_upgrade
@@ -402,12 +402,12 @@ jobs:
         run: dart test
     if: "github.event_name == 'schedule'"
   job_015:
-    name: "cron; windows; Dart 2.15.0; PKG: generator; `dart test`"
+    name: "cron; windows; Dart 3.0.6; PKG: generator; `dart test`"
     runs-on: windows-latest
     steps:
       - uses: dart-lang/setup-dart@v1.3
         with:
-          sdk: "2.15.0"
+          sdk: "3.0.6"
       - id: checkout
         uses: actions/checkout@v2.4.0
       - id: generator_pub_upgrade
