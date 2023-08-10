@@ -7,7 +7,7 @@ environment:
  sdk: '>=2.17.0 <4.0.0'
 
 dependencies:
-  collection: ^1.18.0 ## active (dart.dev)
+  collection: ^1.17.1 ## active (dart.dev)
   dio: ^5.3.2 ## active
   meta: ^1.9.1 ## active (dart.dev)
 dev_dependencies: 
