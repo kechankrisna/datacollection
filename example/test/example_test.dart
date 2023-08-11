@@ -26,7 +26,6 @@ void main() {
     );
   });
   
-
   test('pagination of student model', () {
     var data = <Map<String, dynamic>>[
       ...List.generate(
@@ -49,7 +48,6 @@ void main() {
       reason: "user collection.value should be list of Student",
     );
   });
-
 
   test('collection of user model', () {
     var data = <Map<String, dynamic>>[
